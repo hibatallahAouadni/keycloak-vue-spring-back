@@ -1,0 +1,24 @@
+server:
+  port: 9000
+
+keycloak:
+  auth-server-url: https://accounts.slickteam.fr/auth
+  ssl-required: external
+  realm: slick-dev
+  resource: test-api
+  bearer-only: true
+  credentials:
+    secret: 58cefb67-4d0b-4cfc-ba2e-e7be13179c41
+
+security:
+  basic:
+    enabled: false
+
+spring:
+  main:
+    allow-bean-definition-overriding: true
+
+#logging:
+#  level:
+#    web: DEBUG
+#    root: DEBUG
