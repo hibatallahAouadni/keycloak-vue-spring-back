@@ -24,10 +24,8 @@ import org.springframework.security.web.authentication.session.SessionAuthentica
 import org.springframework.web.cors.CorsConfiguration
 import org.springframework.web.cors.CorsConfigurationSource
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource
-import java.util.*
 import javax.servlet.http.HttpServletRequest
 import javax.servlet.http.HttpServletResponse
-
 
 class OwnKeycloakSecurityConfiguration {
     @Configuration
@@ -72,8 +70,6 @@ class OwnKeycloakSecurityConfiguration {
                     .sessionManagement()
                     // use previously declared bean
                     .sessionAuthenticationStrategy(sessionAuthenticationStrategy())
-
-
                     // keycloak filters for securisation
                     .and()
                     .addFilterBefore(keycloakPreAuthActionsFilter(), LogoutFilter::class.java)
@@ -87,7 +83,7 @@ class OwnKeycloakSecurityConfiguration {
                     .and()
                     .logout()
                     .addLogoutHandler(keycloakLogoutHandler())
-                    .logoutUrl("/logout").logoutSuccessHandler { request: HttpServletRequest, response: HttpServletResponse, authentication: Authentication -> response.status = HttpServletResponse.SC_OK }
+                    .logoutUrl("/logout").logoutSuccessHandler { _: HttpServletRequest, response: HttpServletResponse, _: Authentication -> response.status = HttpServletResponse.SC_OK }
                     .and().apply(CommonSpringKeycloakSecuritAdapter())
 
 
@@ -97,9 +93,9 @@ class OwnKeycloakSecurityConfiguration {
         @Bean
         fun corsConfigurationSource(): CorsConfigurationSource {
             val configuration = CorsConfiguration()
-            configuration.allowedOrigins = Arrays.asList("*")
-            configuration.allowedMethods = Arrays.asList(HttpMethod.OPTIONS.name, "GET", "POST")
-            configuration.allowedHeaders = Arrays.asList("Access-Control-Allow-Headers", "Access-Control-Allow-Origin", "Authorization")
+            configuration.allowedOrigins = listOf("*")
+            configuration.allowedMethods = listOf(HttpMethod.OPTIONS.name, "GET", "POST")
+            configuration.allowedHeaders = listOf("Access-Control-Allow-Headers", "Access-Control-Allow-Origin", "Authorization")
             val source = UrlBasedCorsConfigurationSource()
             source.registerCorsConfiguration("/**", configuration)
             return source
@@ -117,22 +113,18 @@ class OwnKeycloakSecurityConfiguration {
                     .csrf().disable()
                     .sessionManagement()
                     .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-
                     .and()
                     // manage routes securisation here
                     .authorizeRequests().antMatchers(HttpMethod.OPTIONS).permitAll()
-
                     // manage routes securisation here
                     .and()
                     .authorizeRequests()
                     .antMatchers(HttpMethod.OPTIONS).permitAll()
-
-
                     .antMatchers("/logout", "/", "/unsecured").permitAll()
                     .antMatchers("/api/**").permitAll()
                     .antMatchers("/test").authenticated()
-                    .antMatchers("/user").hasRole("user")
-                    .antMatchers("/admin").hasRole("admin")
+                    .antMatchers("/user").hasRole("USER")
+                    .antMatchers("/admin").hasRole("ADMIN")
                     .anyRequest().denyAll()
 
         }

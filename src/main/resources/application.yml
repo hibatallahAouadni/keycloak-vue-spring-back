@@ -2,13 +2,13 @@ server:
   port: 9000
 
 keycloak:
-  auth-server-url: https://accounts.slickteam.fr/auth
-  ssl-required: external
-  realm: slick-dev
+  auth-server-url: http://localhost:10001/auth
+  ssl-required: none
+  realm: test
   resource: test-api
   bearer-only: true
   credentials:
-    secret: 58cefb67-4d0b-4cfc-ba2e-e7be13179c41
+    secret: 98e37c89-fbe5-4961-a769-0e0024ad3d49
 
 security:
   basic:
