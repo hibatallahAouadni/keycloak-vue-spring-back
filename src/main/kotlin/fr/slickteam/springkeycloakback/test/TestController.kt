@@ -10,16 +10,16 @@ import org.springframework.web.bind.annotation.RestController
 @CrossOrigin("*")
 class TestController {
 
-    @GetMapping(value = ["", "/unsecured"])
-    fun unsecured(): ApiResponse = ApiResponse(content = "Not logged")
+    @GetMapping(value = ["", "/public"])
+    fun public(): ApiResponse = ApiResponse(content = "You have access to public content")
 
     @GetMapping("/admin")
-    fun admin(): ApiResponse = ApiResponse(content = "admin")
+    fun admin(): ApiResponse = ApiResponse(content = "You have access to admin content")
 
     @GetMapping("/user")
-    fun user(): ApiResponse = ApiResponse(content = "user")
+    fun user(): ApiResponse = ApiResponse(content = "You have access to user content")
 
-    @GetMapping("/test")
-    fun test(): ApiResponse = ApiResponse(content = "test")
+    @GetMapping("/private")
+    fun private(): ApiResponse = ApiResponse(content = "You have access to private content")
 
 }
