@@ -2,9 +2,9 @@ version: '3'
 
 services:
   back:
-    image: back_keycloak:latest
+    image: repo.slickteam.fr:15001/kvp-back:latest
     build: .
-    container_name: back-keycloak-srv
+    container_name: kvp-back-srv
     ports:
       - 9000:9000
     environment:
@@ -13,4 +13,13 @@ services:
       KEYCLOAK_REALM: test
       KEYCLOAK_CLIENT_ID: test-api
       KEYCLOAK_CLIENT_SECRET: 98e37c89-fbe5-4961-a769-0e0024ad3d49
-    network_mode: bridge
+    networks:
+      - kvp_demo_keycloak
+
+networks:
+  kvp_demo_keycloak:
+    driver: bridge
+    ipam:
+      driver: default
+      config:
+        - subnet: "193.100.10.0/24"
