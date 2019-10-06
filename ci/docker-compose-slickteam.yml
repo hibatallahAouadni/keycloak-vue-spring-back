@@ -1,0 +1,25 @@
+version: '3'
+
+services:
+  back:
+    image: repo.slickteam.fr:15001/kvp-back:latest
+    build: .
+    container_name: kvp-back-srv
+    ports:
+      - 9000:9000
+    environment:
+      PORT: 9000
+      KEYCLOAK_AUTH_URL: https://accounts.slickteam.fr/auth
+      KEYCLOAK_REALM: slick-dev
+      KEYCLOAK_CLIENT_ID: kvp-api
+      KEYCLOAK_CLIENT_SECRET: 87d608e2-d89e-47cb-bc7a-054ed8cf5efc
+    networks:
+      - kvp_demo_keycloak
+
+networks:
+  kvp_demo_keycloak:
+    driver: bridge
+    ipam:
+      driver: default
+      config:
+        - subnet: "193.100.10.0/24"
