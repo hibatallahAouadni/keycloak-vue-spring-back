@@ -3,7 +3,7 @@ version: '3'
 services:
   back:
     image: repo.slickteam.fr:15001/kvp-back:latest
-    build: .
+    build: ../
     container_name: kvp-back-srv
     ports:
       - 9000:9000
