@@ -1,0 +1,16 @@
+version: '3'
+
+services:
+  back:
+    image: back_keycloak:latest
+    build: .
+    container_name: back-keycloak-srv
+    ports:
+      - 9000:9000
+    environment:
+      PORT: 9000
+      KEYCLOAK_AUTH_URL: http://localhost:10001/auth
+      KEYCLOAK_REALM: test
+      KEYCLOAK_CLIENT_ID: test-api
+      KEYCLOAK_CLIENT_SECRET: 98e37c89-fbe5-4961-a769-0e0024ad3d49
+    network_mode: bridge

@@ -1,14 +1,14 @@
 server:
-  port: 9000
+  port: ${PORT}
 
 keycloak:
-  auth-server-url: http://localhost:10001/auth
+  auth-server-url: ${KEYCLOAK_AUTH_URL}
   ssl-required: none
-  realm: test
-  resource: test-api
+  realm: ${KEYCLOAK_REALM}
+  resource: ${KEYCLOAK_CLIENT_ID}
   bearer-only: true
   credentials:
-    secret: 98e37c89-fbe5-4961-a769-0e0024ad3d49
+    secret: ${KEYCLOAK_CLIENT_SECRET}
 
 security:
   basic:
@@ -17,8 +17,3 @@ security:
 spring:
   main:
     allow-bean-definition-overriding: true
-
-#logging:
-#  level:
-#    web: DEBUG
-#    root: DEBUG
