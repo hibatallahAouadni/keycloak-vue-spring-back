@@ -4,6 +4,12 @@ package fr.slickteam.springkeycloakback.config
 //import org.keycloak.adapters.KeycloakConfigResolver
 //import org.keycloak.adapters.springboot.KeycloakSpringBootConfigResolver
 //import org.keycloak.adapters.springsecurity.config.KeycloakWebSecurityConfigurerAdapter
+//import org.springframework.beans.factory.annotation.Autowired
+//import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty
+//import org.springframework.context.annotation.Bean
+//import org.springframework.context.annotation.ComponentScan
+//import org.springframework.context.annotation.Configuration
+//import org.springframework.http.HttpMethod
 //import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder
 //import org.springframework.security.config.annotation.web.builders.HttpSecurity
 //import org.springframework.security.config.http.SessionCreationPolicy
@@ -13,24 +19,29 @@ package fr.slickteam.springkeycloakback.config
 //import org.springframework.security.web.authentication.preauth.x509.X509AuthenticationFilter
 //import org.springframework.security.web.authentication.session.NullAuthenticatedSessionStrategy
 //import org.springframework.security.web.authentication.session.SessionAuthenticationStrategy
-
+//import org.springframework.web.cors.CorsConfiguration
+//import org.springframework.web.cors.CorsConfigurationSource
+//import org.springframework.web.cors.UrlBasedCorsConfigurationSource
+//import javax.servlet.http.HttpServletRequest
+//import javax.servlet.http.HttpServletResponse
+//
 //@Configuration
 //@EnableWebSecurity
 //@ConditionalOnProperty(name = ["keycloak.enabled"], havingValue = "true", matchIfMissing = true)
 //@ComponentScan(basePackageClasses = [KeycloakSecurityComponents::class])
 //class KeycloakConfigurationAdapter : KeycloakWebSecurityConfigurerAdapter() {
-
+//
 //    @Bean
 //    override fun sessionAuthenticationStrategy(): SessionAuthenticationStrategy {
 //        // required for bearer-only applications.
 //        return NullAuthenticatedSessionStrategy()
 //    }
-
+//
 //    @Bean
 //    fun KeycloakConfigResolver(): KeycloakConfigResolver {
 //        return KeycloakSpringBootConfigResolver()
 //    }
-
+//
 //    @Autowired
 //    @Throws(Exception::class)
 //    fun configureGlobal(auth: AuthenticationManagerBuilder) {
@@ -73,7 +84,7 @@ package fr.slickteam.springkeycloakback.config
 //                .antMatchers("/admin").hasRole("ADMIN")
 //                .anyRequest().denyAll()
 //    }
-
+//
 //    @Bean
 //    fun corsConfigurationSource(): CorsConfigurationSource {
 //        val configuration = CorsConfiguration()
