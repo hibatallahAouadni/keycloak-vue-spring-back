@@ -1,0 +1,42 @@
+version: '3'
+
+services:
+  mariadb:
+    image: mariadb:10.4.7
+    container_name: kvp-mariadb-srv
+    restart: unless-stopped
+    volumes:
+      - /opt/forge/mariadb/data:/var/lib/mysql
+      - /opt/forge/mariadb/backup:/tmp/backup
+      - /var/log/forge/mariadb:/var/log
+    environment:
+      MYSQL_ROOT_PASSWORD: Slick;123
+      MYSQL_DATABASE: keycloak
+    networks:
+      - kvp_demo_keycloak
+  keycloak:
+    image: jboss/keycloak:6.0.1
+    container_name: kvp-keycloak-srv
+    restart: unless-stopped
+    environment:
+      KEYCLOAK_USER: slickadmin
+      KEYCLOAK_PASSWORD: Slick;123
+      DB_VENDOR: mariadb
+      DB_ADDR: mariadb
+      DB_DATABASE: keycloak
+      DB_USER: root
+      DB_PASSWORD: Slick;123
+    ports:
+      - "10000:8443"
+      - "10001:8080"
+    networks:
+      - kvp_demo_keycloak
+
+networks:
+  kvp_demo_keycloak:
+    driver: bridge
+    ipam:
+      driver: default
+      config:
+        - subnet: "193.100.10.0/24"
+
