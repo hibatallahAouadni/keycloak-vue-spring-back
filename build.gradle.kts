@@ -1,10 +1,10 @@
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
-    id("org.springframework.boot") version "2.1.9.RELEASE"
-    id("io.spring.dependency-management") version "1.0.8.RELEASE"
-    kotlin("jvm") version "1.3.50"
-    kotlin("plugin.spring") version "1.3.50"
+    id("org.springframework.boot") version "2.2.6.RELEASE"
+    id("io.spring.dependency-management") version "1.0.9.RELEASE"
+    kotlin("jvm") version "1.3.71"
+    kotlin("plugin.spring") version "1.3.71"
 }
 
 group = "fr.slickteam"
@@ -15,7 +15,7 @@ repositories {
     mavenCentral()
 }
 
-val versionKeycloak = "6.0.1"
+val versionKeycloak = "9.0.2"
 
 dependencies {
     implementation("org.springframework.boot:spring-boot-starter-web")
