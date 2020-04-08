@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RestController
 
 
 @RestController
-@CrossOrigin("http://localhost:8443")
+@CrossOrigin("http://localhost:8080")
 class TestController {
 
     @GetMapping(value = ["", "/public"])

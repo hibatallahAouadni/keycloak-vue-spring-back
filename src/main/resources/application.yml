@@ -1,24 +1,19 @@
 server:
   port: ${PORT}
 
-# TODO
-#keycloak:
-#  auth-server-url: ${KEYCLOAK_AUTH_URL}
-#  ssl-required: none
-#  realm: ${KEYCLOAK_REALM}
-#  resource: ${KEYCLOAK_CLIENT_ID}
-#  bearer-only: true
-#  credentials:
-#    secret: ${KEYCLOAK_CLIENT_SECRET}
+keycloak:
+  auth-server-url: ${KEYCLOAK_AUTH_URL}
+  ssl-required: none
+  realm: ${KEYCLOAK_REALM}
+  resource: ${KEYCLOAK_CLIENT_ID}
+  bearer-only: true
+  credentials:
+    secret: ${KEYCLOAK_CLIENT_SECRET}
 
+security:
+  basic:
+    enabled: false
 
-# TODO
-#security:
-#  basic:
-#    enabled: false
-
-
-# TODO
-#spring:
-#  main:
-#    allow-bean-definition-overriding: true
+spring:
+  main:
+    allow-bean-definition-overriding: true

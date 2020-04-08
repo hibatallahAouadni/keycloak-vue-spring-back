@@ -19,11 +19,10 @@ val versionKeycloak = "9.0.2"
 
 dependencies {
     implementation("org.springframework.boot:spring-boot-starter-web")
-    // TODO add
-//    implementation("org.springframework.boot:spring-boot-starter-security")
+    implementation("org.springframework.boot:spring-boot-starter-security")
 
-//    implementation("org.keycloak:keycloak-spring-boot-starter:$versionKeycloak")
-//    implementation("org.keycloak.bom:keycloak-adapter-bom:$versionKeycloak")
+    implementation("org.keycloak:keycloak-spring-boot-starter:$versionKeycloak")
+    implementation("org.keycloak.bom:keycloak-adapter-bom:$versionKeycloak")
 
     implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
     implementation("org.jetbrains.kotlin:kotlin-reflect")
